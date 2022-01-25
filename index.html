@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HR-management-system</title>
-    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="">
 </head>
 <body>
 
@@ -20,13 +20,45 @@
 
 
     <main>
-
-        <section class="ToDo-Web"></section>
         <script src="./JS/app.js"></script>
+        <section class="ToDo-Web">
+                <h2> Add an Employee : </h2>
+    
+                <form id="employeeForm">
+                    <fieldset> 
+                      <legend>Add Full Name</legend>
+                      <label for="name">Name:</label>
+                      <input type="text" name="name" id="name" required />
+                      <br />
+                      <br />
+                      <label for="dept">Select a Department :</label>
+                      <select id="dept">
+                        <option value="1">Administration</option>
+                        <option value="2">Marketing</option>
+                        <option value="3">Development</option>
+                        <option value="4">Finance</option>
+                    </select>
+                      <br />
+                      <br />
+                      <label for="dept">Select a Level :</label>
+                      <select id="lvl">
+                        <option value="1">Junior</option>
+                        <option value="2">Mid-Senior</option>
+                        <option value="3">Senior</option>
+                    </select>
+                      <br />
+                      <br />
+                      <label for="imgurl">Image url</label>
+                      <input type="text" name="imgurl" id="imgurl"  />
+                      <br />
+                      <br />
+                      <input type="submit" value="add new employee" />
+                    </fieldset>
+                  </form>
+        </section>
+        
         
     </main>
-
-
 
     <footer>
 

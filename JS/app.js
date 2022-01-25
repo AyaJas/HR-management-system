@@ -1,5 +1,6 @@
 'use strict';
-
+//        ********** Task 7 ***********
+/*
 function Employee(employeeId, fullName, department, level) {
     this.employeeId = employeeId;
     this.fullName = fullName;
@@ -67,3 +68,7 @@ emp4.printData();
 emp5.printData();
 emp6.printData();
 emp7.printData();
+*/
+
+
+//     ******** Task 8 *********
