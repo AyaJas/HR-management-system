@@ -44,7 +44,6 @@ Employee.prototype.fullNameSalary = function () {
 
 
 const AYA = new Employee(100, 'Aya Hamedat','CS','Mid-Senior');
-//AYA.getNetSalary();
 document.write(`The Net Salary is : ${AYA.getNetSalary()}`);
 AYA.fullNameSalary();
 
