@@ -145,8 +145,6 @@ function handelSubmit(event) {
     saveToLocalS(jsonArr);
 
     render(readFromLocalS());
-
-
 }
 
 function getRandomNumber() {
@@ -164,7 +162,7 @@ function checkLocalAndPush() {
 }
 
 function readFromLocalS() {
-    let jsonArr = localStorage.getItem('drinks');
+    let jsonArr = localStorage.getItem('employees');
     let arr = JSON.parse(jsonArr);
     if (arr !== null) {
         return arr;
@@ -188,10 +186,6 @@ function saveToLocalS(jsonArray) {
 render(readFromLocalS());
 
 employeeForm.addEventListener('submit', handelSubmit);
-
-
-
-
 
 
 
