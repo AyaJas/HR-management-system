@@ -72,3 +72,79 @@ emp7.printData();
 
 
 //     ******** Task 8 *********
+
+'use strict';
+
+let employeeForm = document.getElementById("empForm");
+console.log(employeeForm);
+
+
+function Employee(fullName, department, level) {
+    this.empId = 0;
+    this.fullName = fullName;
+    this.department = department;
+    this.level = level;
+    this.imagePath = `./assets/${this.fullName}.jpg`;
+    this.salary = 0;
+}
+
+Employee.prototype.getEmpId = function () {
+    this.empId = getRandomNumber();
+}
+
+Employee.prototype.render = function () {
+
+    let div = document.createElement('div');
+    employeeForm.appendChild(div);
+
+    let img = document.createElement('img');
+    div.appendChild(img);
+    img.setAttribute('src', this.imagePath);
+    img.setAttribute('alt', this.fullName);
+
+    let ul = document.createElement('ul');
+    div.appendChild(ul);
+    let li = document.createElement('li');
+    ul.appendChild(li);
+    li.textContent = `FullName : ${this.fullName} - ID : ${this.empId} - Department: ${this.department} - Level: ${this.level}`;
+
+}
+
+
+
+function handelSubmit(event) {
+    event.preventDefault();
+    let name = event.target.name.value;
+
+    let dept = document.getElementById("dept");
+    let valuedept = dept.options[dept.selectedIndex].value;
+    let textdept = dept.options[dept.selectedIndex].text;
+
+
+    let lvl = document.getElementById("lvl");
+    let valuelvl = lvl.options[lvl.selectedIndex].value;
+    let textlvl = lvl.options[lvl.selectedIndex].text;
+
+    let newEmp = new Employee(name, textdept, textlvl);
+
+    newEmp.getEmpId();
+    newEmp.render();
+
+
+}
+
+
+function getRandomNumber() {
+    return Math.floor(1000 + Math.random() * 9000);
+}
+
+
+employeeForm.addEventListener('submit', handelSubmit);
+
+
+
+
+
+
+
+
