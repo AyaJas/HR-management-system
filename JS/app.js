@@ -73,10 +73,14 @@ emp7.printData();
 
 //     ******** Task 8 *********
 
-'use strict';
 
 let employeeForm = document.getElementById("empForm");
+let employeeSection = document.getElementById("employees");
 console.log(employeeForm);
+//console.log(employeeSection);
+let allEmp = [];
+checkLocalAndPush();
+
 
 
 function Employee(fullName, department, level) {
@@ -92,22 +96,27 @@ Employee.prototype.getEmpId = function () {
     this.empId = getRandomNumber();
 }
 
-Employee.prototype.render = function () {
+function render(empFromLS) {
 
-    let div = document.createElement('div');
-    employeeForm.appendChild(div);
+    employeeSection.innerHTML = '';
 
-    let img = document.createElement('img');
-    div.appendChild(img);
-    img.setAttribute('src', this.imagePath);
-    img.setAttribute('alt', this.fullName);
+    for (let i = 0; i < empFromLS.length; i++) {
+            let div = document.createElement('div');
+            employeeSection.appendChild(div);
 
-    let ul = document.createElement('ul');
-    div.appendChild(ul);
-    let li = document.createElement('li');
-    ul.appendChild(li);
-    li.textContent = `FullName : ${this.fullName} - ID : ${this.empId} - Department: ${this.department} - Level: ${this.level}`;
+            
+            let img = document.createElement('img');
+            div.appendChild(img);
+            img.setAttribute('src', empFromLS[i].imagePath);
+            img.setAttribute('alt', empFromLS[i].fullName);
 
+            let ul = document.createElement('ul');
+            div.appendChild(ul);
+            let li = document.createElement('li');
+            ul.appendChild(li);
+            console.log(empFromLS[i].fullName);
+            li.textContent = `FullName : ${empFromLS[i].fullName} - ID : ${empFromLS[i].empId} - Department: ${empFromLS[i].department} - Level: ${empFromLS[i].level}`;
+    }
 }
 
 
@@ -128,16 +137,55 @@ function handelSubmit(event) {
     let newEmp = new Employee(name, textdept, textlvl);
 
     newEmp.getEmpId();
-    newEmp.render();
+    
+    allEmp.push(newEmp);
+
+    let jsonArr = toJSON();
+
+    saveToLocalS(jsonArr);
+
+    render(readFromLocalS());
 
 
 }
-
 
 function getRandomNumber() {
     return Math.floor(1000 + Math.random() * 9000);
 }
 
+
+function checkLocalAndPush() {
+    if (allEmp.length == 0) {
+        let arr = readFromLocalS();
+        if (arr.length != 0) {
+            allEmp = arr;
+        }
+    }
+}
+
+function readFromLocalS() {
+    let jsonArr = localStorage.getItem('drinks');
+    let arr = JSON.parse(jsonArr);
+    if (arr !== null) {
+        return arr;
+    } else {
+        return [];
+    }
+}
+
+
+function toJSON() {
+    let jsonArray = JSON.stringify(allEmp);
+    return jsonArray;
+}
+
+
+function saveToLocalS(jsonArray) {
+    localStorage.setItem('employees', jsonArray);
+}
+
+
+render(readFromLocalS());
 
 employeeForm.addEventListener('submit', handelSubmit);
 
