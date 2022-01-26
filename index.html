@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,24 @@
     <title>HR-management-system</title>
     <link rel="stylesheet" href="">
 </head>
+<style>
+    div {
+        height: 350px;
+        width: 200px;
+        display: block;
+        border: 5px outset black;
+        background-color: rgb(126, 171, 189);
+        text-align: left;
+    }
+
+    img {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 170px;
+    }
+</style>
+
 <body>
 
     <header class="container">
@@ -18,56 +37,67 @@
         </nav>
     </header>
 
-
     <main>
-        <script src="./JS/app.js"></script>
-        <section class="ToDo-Web">
-                <h2> Add an Employee : </h2>
-    
-                <form id="employeeForm">
-                    <fieldset> 
-                      <legend>Add Full Name</legend>
-                      <label for="name">Name:</label>
-                      <input type="text" name="name" id="name" required />
-                      <br />
-                      <br />
-                      <label for="dept">Select a Department :</label>
-                      <select id="dept">
+
+
+        <section>
+            <h2> Add an Employee : </h2>
+
+            <form id="empForm">
+                <fieldset>
+                    <legend>add new Employee</legend>
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" id="name" required />
+                    <br />
+                    <br />
+                    <label for="dept">Select a Department :</label>
+                    <select id="dept" name="dept">
                         <option value="1">Administration</option>
                         <option value="2">Marketing</option>
                         <option value="3">Development</option>
                         <option value="4">Finance</option>
                     </select>
-                      <br />
-                      <br />
-                      <label for="dept">Select a Level :</label>
-                      <select id="lvl">
+                    <br />
+                    <br />
+                    <label for="lvl">Select a Level :</label>
+                    <select id="lvl" name="lvl">
                         <option value="1">Junior</option>
                         <option value="2">Mid-Senior</option>
                         <option value="3">Senior</option>
                     </select>
-                      <br />
-                      <br />
-                      <label for="imgurl">Image url</label>
-                      <input type="text" name="imgurl" id="imgurl"  />
-                      <br />
-                      <br />
-                      <input type="submit" value="add new employee" />
-                    </fieldset>
-                  </form>
+                    <br />
+                    <br />
+                    <label for="imgurl">image url</label>
+                    <input type="text" name="imgurl" id="imgurl" />
+                    <br />
+                    <br />
+                    <input type="submit" value="submit" />
+                </fieldset>
+            </form>
+
         </section>
-        
-        
+        <section>
+            <h2></h2>
+            <div class="card">
+                <img src="./assets/AYA.jpeg" id="imgDisplayed" />
+                <ul>
+                    <li id="FullName">AYAH HAMEEDAT</li>
+                    <li id="ID">9999</li>
+                    <li id="dept">Development</li>
+                    <li id="lvl">Junior</li>
+                </ul>
+            </div>
+        </section>
     </main>
 
     <footer>
-
-        <div>
-            <p> All rights reserved &copy; 2022  </p>
-            <a href="facebook.com"> Facebook </a>
-       </div>
+        <p> All rights reserved &copy; 2022 </p>
+        <a href="facebook.com"> Facebook </a>
 
     </footer>
-    
+
+    <script src="./JS/app.js"></script>
+
 </body>
+
 </html>
