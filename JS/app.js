@@ -73,16 +73,6 @@ emp7.printData();
 
 //     ******** Task 8 *********
 
-
-let employeeForm = document.getElementById("empForm");
-let employeeSection = document.getElementById("employees");
-console.log(employeeForm);
-//console.log(employeeSection);
-let allEmp = [];
-checkLocalAndPush();
-
-
-
 function Employee(fullName, department, level) {
     this.empId = 0;
     this.fullName = fullName;
@@ -92,8 +82,48 @@ function Employee(fullName, department, level) {
     this.salary = 0;
 }
 
+let employeeForm = document.getElementById("empForm");
+let employeeSection = document.getElementById("employees");
+console.log(employeeForm);
+//console.log(employeeSection);
+let allEmp = [];
+checkLocalAndPush();
+
+
+var min = [1500, 1000, 500];
+var max = [2000, 1500, 1000];
+
+Employee.prototype.getRandomSalary = function () {
+    var randomSalary = 0;
+    if (this.level == "Senior") {
+        var randomSalary = Math.floor(Math.random() * (max[0] - min[0]) + min[0]);
+    }
+    else if (this.level == "Mid-Senior") {
+        var randomSalary = Math.floor(Math.random() * (max[1] - min[1]) + min[1]);
+    }
+    else if (this.level == "Junior") {
+        var randomSalary = Math.floor(Math.random() * (max[2] - min[2]) + min[2]);
+    }
+    return randomSalary;
+}
+
+
+Employee.prototype.getNetSalary = function () {
+
+    var ranSal = this.getRandomSalary();
+    var ranInNet = `${(ranSal * 7.5 * 0.01)}`;
+    var netSalary = `${ranSal - ranInNet}`;
+    return netSalary;
+    // document.write(` The Net Salary for ${this.level} : ${netSalary}`);
+}
+
+
 Employee.prototype.getEmpId = function () {
     this.empId = getRandomNumber();
+}
+
+Employee.prototype.getEmpSal = function () {
+    this.salary = this.getNetSalary();
 }
 
 function render(empFromLS) {
@@ -115,7 +145,7 @@ function render(empFromLS) {
             let li = document.createElement('li');
             ul.appendChild(li);
             console.log(empFromLS[i].fullName);
-            li.textContent = `FullName : ${empFromLS[i].fullName} - ID : ${empFromLS[i].empId} - Department: ${empFromLS[i].department} - Level: ${empFromLS[i].level}`;
+            li.textContent = `FullName : ${empFromLS[i].fullName} - ID : ${empFromLS[i].empId} - Department: ${empFromLS[i].department} - Level: ${empFromLS[i].level}  ${empFromLS[i].salary}`;
     }
 }
 
@@ -137,6 +167,7 @@ function handelSubmit(event) {
     let newEmp = new Employee(name, textdept, textlvl);
 
     newEmp.getEmpId();
+    newEmp.getEmpSal();
     
     allEmp.push(newEmp);
 
