@@ -7,23 +7,7 @@
     <title>accounting</title>
     <link rel="stylesheet" href="./CSS/style.css">
 </head>
-<style>
-    div {
-        height: 350px;
-        width: 200px;
-        display: block;
-        border: 5px outset black;
-        background-color: rgb(126, 171, 189);
-        text-align: left;
-    }
 
-    img {
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        padding: 5px;
-        width: 170px;
-    }
-</style>
 <body>
 
     <header class="container">
@@ -37,11 +21,44 @@
 
 
     <main>
-        
-        <section class="ToDo-table"></section>
 
         <section id="employees">
 
+        </section>
+
+        <section id = "HRTable">
+            <div id="mydata">
+                <b>Current data in the system ...</b>
+                <table id="myTableData"  border="1" cellpadding="2">
+                    <tr>
+                        <th>Department</th>
+                        <td><b>Administration</b></td>
+                        <td><b>Marketing</b></td>
+                        <td><b>Development</b></td>
+                        <td><b>Finance</b></td>
+                    </tr>
+                    <tr>
+                        <th># of Employees</th>
+                        <td id = "numOfAdm"></td>
+                        <td id = "numOfMar"></td>
+                        <td id = "numOfDeve"></td>
+                        <td id = "numOfFin"></td>
+                    </tr>
+                    <tr>
+                        <th>Total Salary</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Avarage</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
         </section>
         
     </main>
