@@ -121,6 +121,51 @@ let arrSalAdm = []; let arrSalDev = []; let arrSalMark = []; let arrSalFin = [];
 let jsonArr = localStorage.getItem('employees');
 let arr = JSON.parse(jsonArr);
 
+
+///NEW SOL
+
+function Department(name, numOfEmp, AvgSal ,totalSal) {
+   this.name  = name;
+   this.numOfEmp = 0;
+   this.AvgSal = 0;
+   this.totalEmp = 0;
+}
+
+var t = Object.values(arr);
+// console.log(t.department);
+// let Emsal = t.map(a => a.salary);
+// console.log(Emsal);
+
+// Department.prototype.getAvgSal = function () {
+    
+// }
+
+// console.log(arr);
+
+
+  
+  let arrByID = arr.filter(filterByID)
+  
+  console.log('Filtered Array\n', arrByID)
+
+
+let result = t.map(a => `${a.department} : ${a.salary}`);
+// console.log(allEmp);
+console.log(result)
+// this.name = result
+for(var i =0; i <= result.length ;i++){
+if (result[i] == "Administration")
+{
+    this.name = result[i];
+    countAdmin++;
+    this.numOfEmp = countAdmin;
+    
+}
+}
+console.log(this.name +" "+this.numOfEmp);
+
+
+
 for(var i =0; i< arr.length;i++)
 {
     var ay = Object.entries(arr[i]);
@@ -238,20 +283,10 @@ console.log(countFin);
 totalEmp = countAdmin + countDev + countMark + countFin ;
 console.log("Number Of Employees : " + totalEmp);
 
-
+const tableB = document.getElementById(myTableData);
 Employee.renderTab = function(){
 
-    const tableB = document.getElementById(myTableData);
-    // allEmp.forEach(item => {
-    //     tableB.innerHTML+=
-    //     <tr><th>${totalEmp}</th>
-    //     <td>${countAdmin}</td>
-    //     <td>${countDev}</td>
-    //     <td>${countMark}</td>
-    //     <td>${countFin}</td>
-    //     <td>${totalEmp}</td>
-    // </tr>
-    // });
+   
 };
 
 this.renderTab();
