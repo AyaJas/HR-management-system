@@ -59,21 +59,21 @@ function render(empFromLS) {
     employeeSection.innerHTML = '';
 
     for (let i = 0; i < empFromLS.length; i++) {
-            let div = document.createElement('div');
-            employeeSection.appendChild(div);
+        let div = document.createElement('div');
+        employeeSection.appendChild(div);
 
-            
-            let img = document.createElement('img');
-            div.appendChild(img);
-            img.setAttribute('src', empFromLS[i].imagePath);
-            img.setAttribute('alt', empFromLS[i].fullName);
 
-            let ul = document.createElement('ul');
-            div.appendChild(ul);
-            let li = document.createElement('li');
-            ul.appendChild(li);
-            console.log(empFromLS[i].fullName);
-            li.textContent = `FullName : ${empFromLS[i].fullName} - ID : ${empFromLS[i].empId} - Department: ${empFromLS[i].department} - Level: ${empFromLS[i].level}  ${empFromLS[i].salary}`;
+        let img = document.createElement('img');
+        div.appendChild(img);
+        img.setAttribute('src', empFromLS[i].imagePath);
+        img.setAttribute('alt', empFromLS[i].fullName);
+
+        let ul = document.createElement('ul');
+        div.appendChild(ul);
+        let li = document.createElement('li');
+        ul.appendChild(li);
+        console.log(empFromLS[i].fullName);
+        li.textContent = `FullName : ${empFromLS[i].fullName} - ID : ${empFromLS[i].empId} - Department: ${empFromLS[i].department} - Level: ${empFromLS[i].level}  ${empFromLS[i].salary}`;
     }
 }
 
@@ -115,178 +115,117 @@ function toJSON() {
 
 //console.log(readFromLocalS());
 //********************* Task 9 ***********************
-let countAdmin = 0; let countDev = 0; let countMark = 0; let countFin = 0; let totalEmp = 0; 
-let avgSal = 0; 
-let arrSalAdm = []; let arrSalDev = []; let arrSalMark = []; let arrSalFin = [];let avgSalDept = [];
-let jsonArr = localStorage.getItem('employees');
-let arr = JSON.parse(jsonArr);
-
 
 ///NEW SOL
 
-function Department(name, numOfEmp, AvgSal ,totalSal) {
-   this.name  = name;
-   this.numOfEmp = 0;
-   this.AvgSal = 0;
-   this.totalEmp = 0;
-}
-
-var t = Object.values(arr);
-// console.log(t.department);
-// let Emsal = t.map(a => a.salary);
-// console.log(Emsal);
-
-// Department.prototype.getAvgSal = function () {
-    
-// }
-
-// console.log(arr);
-
-
-  
-  let arrByID = arr.filter(filterByID)
-  
-  console.log('Filtered Array\n', arrByID)
-
-
-let result = t.map(a => `${a.department} : ${a.salary}`);
-// console.log(allEmp);
-console.log(result)
-// this.name = result
-for(var i =0; i <= result.length ;i++){
-if (result[i] == "Administration")
-{
-    this.name = result[i];
-    countAdmin++;
-    this.numOfEmp = countAdmin;
-    
-}
-}
-console.log(this.name +" "+this.numOfEmp);
-
-
-
-for(var i =0; i< arr.length;i++)
-{
-    var ay = Object.entries(arr[i]);
-    //console.log(ay);
-    var by = Object.values(ay[2]);
-
-    var sy = Object.values(ay[5]);
-    var syAvg = sy[1];
-
-    //Department Name
-    console.log(by[1]);
-    //#of Employees;
-    if (by[1] == "Administration")
-    {
-        countAdmin++;
-        arrSalAdm.push(syAvg);
-        avgSalDept.push(syAvg);
-    }
-    else if (by[1] == "Development")
-    {
-        countDev++;
-        arrSalDev.push(syAvg);
-        avgSalDept.push(syAvg);
-    }
-    else if (by[1] == "Marketing")
-    {
-        countMark++;
-        arrSalMark.push(syAvg);
-        avgSalDept.push(syAvg);
-    }
-    else if (by[1] == "Finance")
-    {
-        countFin++;
-        arrSalFin.push(syAvg);
-        avgSalDept.push(syAvg);
+function Department(name) {
+    this.name = name;
+    this.numOfEmp = 0;
+    this.AvgSal = 0;
+    this.totalEmp = 0;
+    if (!allEmp.includes(this)) {
+        allEmp.push(this);
     }
 }
 
-//all Emp
-
-//console.log(avgSalDept);
-var avgSalDepts = avgSalDept.map(i=>Number(i));
-console.log(avgSalDepts);
-var totalSalary = 0; var sum = 0; var totalSalary = 0; 
-for(var j = 0; j < avgSalDepts.length ; j++)
-{
-    totalSalary = totalSalary + avgSalDepts[j];
-    sum = totalSalary / avgSalDepts.length;
-}
-console.log("Avg Salary for All Employees :" + sum);
-console.log("Total Salary for All Employees :" + totalSalary);
-///admin
-
-//console.log(arrSalAdm);
-var avgSalAdms = arrSalAdm.map(i=>Number(i));
-//console.log(avgSalAdms);
-var totalSalAdm = 0; var sumAdm = 0;
-for(var j = 0; j < avgSalAdms.length ; j++)
-{
-    totalSalAdm = totalSalAdm + avgSalAdms[j];
-    sumAdm = totalSalAdm / avgSalAdms.length;
-}
-console.log("Avg Salary for Admin : "+sumAdm);
-console.log("Total Salary for Admin :" + totalSalAdm);
+var DepartmentName = ["Administration", "Development", "Finance", "Marketing"];
+var departmentNumber = []
+var totalSalaryArr = []
+let sumAdmin = 0; let sumDev = 0; let sumMark = 0; let sumFin = 0; let totalEmp = 0;
+let avgSal = 0;
+let arrSalAdm = []; let arrSalDev = []; let arrSalMark = []; let arrSalFin = []; let avgSalDept = [];
+let jsonArr = localStorage.getItem('employees');
+let arr = JSON.parse(jsonArr);
+let DepArr = []
+const tableB = document.getElementById("myTableData");
 
 
-//Development
-
-//console.log(arrSalDev);
-var arrSalDevs = arrSalDev.map(i=>Number(i));
-//console.log(avgSalAdms);
-var totalSalDev = 0; var sumDev = 0;
-for(var j = 0; j < arrSalDevs.length ; j++)
-{
-    totalSalDev = totalSalDev + arrSalDevs[j];
-    sumDev = totalSalDev / arrSalDevs.length;
-}
-console.log("Avg Salary for Development : "+sumDev);
-console.log("Total Salary for Development : " + totalSalDev);
-
-//Marketing
-
-//console.log(arrSalMark);
-var arrSalMarks = arrSalMark.map(i=>Number(i));
-//console.log(avgSalAdms);
-var totalSalMrk = 0; var sumMark = 0;
-for(var j = 0; j < arrSalMarks.length ; j++)
-{
-    totalSalMrk = totalSalMrk + arrSalMarks[j];
-    sumMark = totalSalMrk / arrSalMarks.length;
-}
-console.log("Avg Salary for Marketing : "+sumMark);
-console.log("Total Salary for Marketing : " + totalSalMrk);
-
-//Finance
-
-//console.log(arrSalFin);
-var arrSalFins = arrSalFin.map(i=>Number(i));
-//console.log(avgSalAdms);
-var sumSalFin = 0; var sumFin = 0;
-for(var j = 0; j < arrSalFins.length ; j++)
-{
-    sumSalFin = sumSalFin + arrSalFins[j];
-    sumFin = sumSalFin / arrSalFins.length;
-}
-console.log("Avg Salary for Finance : "+sumFin);
-console.log("Total Salary for Finance : " + sumSalFin);
+function renderTabel() {
+    arrSalAdm = arr.filter(emp => { return emp.department == "Administration" });
+    arrSalDev = arr.filter(emp => { return emp.department == "Development" });
+    arrSalFin = arr.filter(emp => { return emp.department == "Finance" });
+    arrSalMark = arr.filter(emp => { return emp.department == "Marketing" });
+    departmentNumber.push(arrSalAdm.length);
+    departmentNumber.push(arrSalDev.length);
+    departmentNumber.push(arrSalFin.length);
+    departmentNumber.push(arrSalMark.length);
 
 
-console.log(countAdmin);
-console.log(countDev);
-console.log(countMark);
-console.log(countFin);
+    arrSalAdm.forEach(emp => {
+        sumAdmin = sumAdmin + parseFloat(emp.salary);
+    });
 
-totalEmp = countAdmin + countDev + countMark + countFin ;
-console.log("Number Of Employees : " + totalEmp);
+    arrSalDev.forEach(emp => {
+        sumDev = sumDev + parseFloat(emp.salary);
+    });
 
-const tableB = document.getElementById(myTableData);
-Employee.renderTab = function(){
+    arrSalFin.forEach(emp => {
+        sumFin = sumFin + parseFloat(emp.salary);
+    });
 
-   
+    arrSalMark.forEach(emp => {
+        sumMark = sumMark + parseFloat(emp.salary);
+    });
+
+    totalSalaryArr.push(sumAdmin)
+    totalSalaryArr.push(sumDev)
+    totalSalaryArr.push(sumFin)
+    totalSalaryArr.push(sumMark)
+
+    var headerTr = document.createElement('tr');
+    for (var i = 0; i <= 4; i++) {
+        var headerTd = document.createElement('td');
+        if (i == 0) {
+            headerTd.innerHTML = "Department";
+        }
+        else {
+            headerTd.innerHTML = DepartmentName[i - 1];
+        }
+        headerTr.appendChild(headerTd);
+    }
+    tableB.appendChild(headerTr);
+    var numOfEmpTr = document.createElement('tr');
+
+    for (var i = 0; i <= 4; i++) {
+        var innerTd = document.createElement('td');  //#numOfEmp #totalSalary # avgSarlay
+        if (i == 0) {
+            innerTd.innerHTML = "#numOfEmp"
+        } else {
+            innerTd.innerHTML = departmentNumber[i - 1]
+        }
+        numOfEmpTr.appendChild(innerTd);
+
+    }
+    tableB.appendChild(numOfEmpTr);
+
+    var totalSalaryTr = document.createElement('tr');
+
+    for (var i = 0; i <= 4; i++) {
+        var innerTd = document.createElement('td');
+        if (i == 0) {
+            innerTd.innerHTML = "total Salary"
+        } else {
+            innerTd.innerHTML = totalSalaryArr[i - 1]
+        }
+        totalSalaryTr.appendChild(innerTd);
+
+    }
+    tableB.appendChild(totalSalaryTr);
+
+
+    var avgSalaryTr = document.createElement('tr');
+
+    for (var i = 0; i <= 4; i++) {
+        var innerTd = document.createElement('td'); 
+        if (i == 0) {
+            innerTd.innerHTML = "Avg Salary"
+        } else {
+            innerTd.innerHTML = Math.floor(totalSalaryArr[i - 1] / departmentNumber[i - 1])
+        }
+        avgSalaryTr.appendChild(innerTd);
+
+    }
+    tableB.appendChild(avgSalaryTr);
+
 };
-
-this.renderTab();
+renderTabel();
