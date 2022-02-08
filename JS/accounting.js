@@ -205,7 +205,7 @@ function renderTabel() {
         if (i == 0) {
             innerTd.innerHTML = "total Salary"
         } else {
-            innerTd.innerHTML = totalSalaryArr[i - 1]
+            innerTd.innerHTML =  Math.floor(totalSalaryArr[i - 1])
         }
         totalSalaryTr.appendChild(innerTd);
 
@@ -219,8 +219,12 @@ function renderTabel() {
         var innerTd = document.createElement('td'); 
         if (i == 0) {
             innerTd.innerHTML = "Avg Salary"
-        } else {
+        } else if( departmentNumber[i - 1] != 0 ){
             innerTd.innerHTML = Math.floor(totalSalaryArr[i - 1] / departmentNumber[i - 1])
+        }
+        else
+        {
+            innerTd.innerHTML = 0;
         }
         avgSalaryTr.appendChild(innerTd);
 
